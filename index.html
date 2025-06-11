@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>
-      Clicker Game
+      Clicker Game 
     </title>
   </head>
   <body>
@@ -26,8 +26,8 @@
           autoclickers = autoclickers + 1;
           autoclickercost = Math.round(autoclickercost*1.2);
           document.getElementById("clicks").innerHTML = clicks;
-          document.getElementById("autoclickers").innerHTML = auto;
-          document.getElementById("autoclickercost").innerHTML = clicks;
+          document.getElementById("autoclickers").innerHTML = autoclickers;
+          document.getElementById("autoclickercost").innerHTML = autoclickercost;
         }
       }
       
@@ -35,6 +35,11 @@
         clicks = clicks + amount;
         document.getElementById("clicks").innerHTML = clicks;
       }
+
+      setInterval(function() {
+        clicks = clicks + autoclickers;
+        document.getElementById("clicks").innerHTML = clicks;
+      }, 1000);
     </script>
   </body>
 </html>
