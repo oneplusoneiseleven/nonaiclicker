@@ -9,12 +9,16 @@
     <p>
       Clicks:<span id="clicks">0</span>
     </p>
+    <button onclick="addToClicks(1)">
+      Click to increase the clicks
+    </button>
     <script>
       var clicks = 0;
-
-      clicks = clicks + 1;
-
-      document.getElementById("clicks").innerHTML = clicks;
+      
+      function addToClicks(amount) {
+        clicks = clicks + amount;
+        document.getElementById("clicks").innerHTML = clicks;
+      }
     </script>
   </body>
 </html>
