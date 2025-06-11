@@ -12,8 +12,24 @@
     <button onclick="addToClicks(1)">
       Click to increase the clicks
     </button>
+    <button>
+      Autoclicker [<span id="autoclickerprice">15</span>] -- <span id="autoclickers">0</span>
+    </button>
     <script>
       var clicks = 0;
+      var autoclickers = 0;
+      var autoclickercost = 15;
+
+      function buyAutoClicker() {
+        if (clicks >= autoclickercost) {
+          clicks = clicks - autoclickercost;
+          autoclickers = autoclickers + 1;
+          autoclickercost = Math.round(autoclickercost*1.2);
+          document.getElementById("clicks").innerHTML = clicks;
+          document.getElementById("autoclickers").innerHTML = auto;
+          document.getElementById("autoclickercost").innerHTML = clicks;
+        }
+      }
       
       function addToClicks(amount) {
         clicks = clicks + amount;
