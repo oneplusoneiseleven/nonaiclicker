@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  body {
+    background-color: black;
+    color: white;
   <head>
     <title>
       Clicker Game 
@@ -10,15 +13,20 @@
       Clicks:<span id="clicks">0</span>
     </p>
     <button onclick="addToClicks(1)">
-      Click to increase the clicks
+      Click
     </button>
     <button onclick="buyAutoClicker()">
       Autoclicker [<span id="autoclickercost">15</span>] -- <span id="autoclickers">0</span>
+    </button>
+    <button onclick="buyMegaClicker()">
+      Megaclicker [<span id="megaclickercost">200</span>] -- <span id="megaclickers">0</span>
     </button>
     <script>
       var clicks = 0;
       var autoclickers = 0;
       var autoclickercost = 15;
+      var megaclickers = 0;
+      var megaclickercost = 200;
 
       function buyAutoClicker() {
         if (clicks >= autoclickercost) {
@@ -30,6 +38,17 @@
           document.getElementById("autoclickercost").innerHTML = autoclickercost;
         }
       }
+
+      function buyMegaClicker() {
+        if (clicks >= megaclickercost) {
+          clicks = clicks - megaclickercost;
+          megaclickers = megaclickers + 1;
+          megaclickercost = Math.round(megaclickercost*1.15);
+          document.getElementById("clicks").innerHTML = clicks;
+          document.getElementById("megaclickers").innerHTML = megaclickercost;
+          document.getElementById("megaclickercost").innerHTML = megaclickercost;
+        }
+      }
       
       function addToClicks(amount) {
         clicks = clicks + amount;
@@ -37,7 +56,7 @@
       }
 
       setInterval(function() {
-        clicks = clicks + autoclickers;
+        clicks = clicks + autoclickers + (5*megaclickers);
         document.getElementById("clicks").innerHTML = clicks;
       }, 1000);
     </script>
