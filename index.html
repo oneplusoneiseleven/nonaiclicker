@@ -4,7 +4,7 @@
     body {
       background-color: black;
       color: white;
-    .button {
+    .colorbutton {
       background-color: midnightblue;
       color: white;
   </style>
@@ -17,13 +17,13 @@
     <p>
       Clicks:<span id="clicks">0</span>
     </p>
-    <button onclick="addToClicks(1)">
+    <button onclick="addToClicks(1)" class="colorbutton">
       Click
     </button>
-    <button onclick="buyAutoClicker()">
+    <button onclick="buyAutoClicker()" class="colorbutton">
       Autoclicker [<span id="autoclickercost">15</span>] -- <span id="autoclickers">0</span>
     </button>
-    <button onclick="buyMegaClicker()">
+    <button onclick="buyMegaClicker()" class="colorbutton>
       Megaclicker [<span id="megaclickercost">200</span>] -- <span id="megaclickers">0</span>
     </button>
     <script>
