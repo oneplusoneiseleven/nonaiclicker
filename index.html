@@ -122,6 +122,11 @@
         document.getElementById("clicks").innerHTML = clicks;
         rebirthsavailable = Math.round(15*Math.sqrt(clicks/100000));
         document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
+        if (autobuyselected === 1) {
+          buyAutoClicker()
+        } else if (autobuyselected === 2) {
+          buyMegaClicker()
+        }
       }, 1000);
     </script>
   </body>
