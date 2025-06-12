@@ -51,16 +51,16 @@
       Gigaclickers
     </button>
     <script>
-      var clicks = 0;
-      var autoclickers = 0;
-      var autoclickercost = 15;
-      var megaclickers = 0;
-      var megaclickercost = 200;
-      var gigaclickers = 0;
-      var gigaclickercost = 10000;
-      var rebirths = 0;
-      var rebirthsavailable = 0;
-      var autobuyselected = 0;
+      var clicks = parseInt(getCookie("clicks")) || 0;
+      var autoclickers = parseInt(getCookie("autoclickers")) || 0;
+      var autoclickercost = parseInt(getCookie("autoclickercost")) || 15;
+      var megaclickers = parseInt(getCookie("megaclickers")) || 0;
+      var megaclickercost = parseInt(getCookie("megaclickercost")) || 200;
+      var gigaclickers = parseInt(getCookie("gigaclickers")) || 0;
+      var gigaclickercost = parseInt(getCookie("gigaclickercost")) || 10000;
+      var rebirths = parseInt(getCookie("rebirths")) || 0;
+      var rebirthsavailable = parseInt(getCookie("rebirthsavailable")) || 0;
+      var autobuyselected = parseInt(getCookie("autobuyselected")) || 0;
 
       function buyAutoClicker() {
         if (clicks >= autoclickercost) {
@@ -146,6 +146,31 @@
         }
       }
 
+      function save(name, value) {
+        const expires = new Date(Date.now() + 7 * 864e5).toUTCString(); // 7 days
+        document.cookie = name + "=" + value + ";expires=" + expires + ";path=/testsite2739";
+      }
+
+      function getCookie(name) {
+        const cookies = document.cookie.split("; ");
+        for (let c of cookies) {
+          if (c.startsWith(name + "=")) {
+            return c.substring(name.length + 1);
+          }
+        }
+        return "";
+      }
+
+      document.getElementById("clicks").innerHTML = clicks;
+      document.getElementById("autoclickers").innerHTML = autoclickers;
+      document.getElementById("autoclickercost").innerHTML = autoclickercost;
+      document.getElementById("megaclickers").innerHTML = megaclickers;
+      document.getElementById("megaclickercost").innerHTML = megaclickercost;
+      document.getElementById("gigaclickers").innerHTML = gigaclickers;
+      document.getElementById("gigaclickercost").innerHTML = gigaclickercost;
+      document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
+      document.getElementById("rebirths").innerHTML = rebirths;
+
       setInterval(function() {
         clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers) + (50*gigaclickers));
         document.getElementById("clicks").innerHTML = clicks;
@@ -156,6 +181,16 @@
         } else if (autobuyselected === 3) {
           buyGigaClicker()
         }
+        save("clicks", clicks)
+        save("autoclickers", autoclickers)
+        save("autoclickercost", autoclickercost)
+        save("megaclickers", megaclickers)
+        save("megaclickercost", megaclickercost)
+        save("gigaclickers", gigaclickers)
+        save("gigaclickercost", gigaclickercost)
+        save("rebirthsavailable", rebirthsavailable)
+        save("rebirths", rebirths)
+        save("autobuyselected", autobuyselected)
         rebirthsavailable = Math.round(15*Math.sqrt(clicks/100000));
         document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
       }, 1000);
