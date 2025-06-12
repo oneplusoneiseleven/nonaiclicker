@@ -64,7 +64,7 @@
       }
       
       function addToClicks(amount) {
-        clicks = clicks + amount;
+        clicks = clicks + (rebirths+1)*amount;
         document.getElementById("clicks").innerHTML = clicks;
       }
 
@@ -90,7 +90,7 @@
       setInterval(function() {
         clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers));
         document.getElementById("clicks").innerHTML = clicks;
-        rebirthsavailable = Math.round(5*Math.sqrt(clicks/1000));
+        rebirthsavailable = Math.round(4*Math.sqrt(clicks/10000));
         document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
       }, 1000);
     </script>
