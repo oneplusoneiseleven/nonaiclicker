@@ -26,6 +26,9 @@
     <button onclick="buyMegaClicker()" class="colorbutton">
       Megaclicker [<span id="megaclickercost">200</span>] -- <span id="megaclickers">0</span>
     </button>
+    <button onclick="buyGigaClicker()" class="colorbutton" id="unlock2_1" style="display:none;">
+      Gigaclicker [<span id="gigaclickercost">10000</span>] -- <span id="gigaclickers">0</span>
+    </button>
     <p>
       Rebirths: [<span id="rebirths">0</span>]
     </p>
@@ -44,12 +47,17 @@
     <button onclick="autoBuySetting(2)" class="colorbutton" id="unlock1_4" style="display:none;">
       Megaclickers
     </button>
+    <button onclick="autoBuySetting(3)" class="colorbutton" id="unlock1_5" style="display:none;">
+      Gigaclickers
+    </button>
     <script>
       var clicks = 0;
       var autoclickers = 0;
       var autoclickercost = 15;
       var megaclickers = 0;
       var megaclickercost = 200;
+      var gigaclickers = 0;
+      var gigaclickercost = 10000;
       var rebirths = 0;
       var rebirthsavailable = 0;
       var autobuyselected = 0;
@@ -58,7 +66,7 @@
         if (clicks >= autoclickercost) {
           clicks = clicks - autoclickercost;
           autoclickers = autoclickers + 1;
-          autoclickercost = Math.round(autoclickercost*1.2);
+          autoclickercost = Math.round(autoclickercost*1.25);
           document.getElementById("clicks").innerHTML = clicks;
           document.getElementById("autoclickers").innerHTML = autoclickers;
           document.getElementById("autoclickercost").innerHTML = autoclickercost;
@@ -69,10 +77,21 @@
         if (clicks >= megaclickercost) {
           clicks = clicks - megaclickercost;
           megaclickers = megaclickers + 1;
-          megaclickercost = Math.round(megaclickercost*1.15);
+          megaclickercost = Math.round(megaclickercost*1.2);
           document.getElementById("clicks").innerHTML = clicks;
           document.getElementById("megaclickers").innerHTML = megaclickers;
           document.getElementById("megaclickercost").innerHTML = megaclickercost;
+        }
+      }
+
+      function buyGigaClicker() {
+        if (clicks >= gigaclickercost) {
+          clicks = clicks - gigaclickercost;
+          gigaclickers = gigaclickers + 1;
+          gigaclickercost = Math.round(gigaclickercost*1.15);
+          document.getElementById("clicks").innerHTML = clicks;
+          document.getElementById("gigaclickers").innerHTML = gigaclickers;
+          document.getElementById("gigaclickercost").innerHTML = gigaclickercost;
         }
       }
       
@@ -89,20 +108,27 @@
           autoclickercost = 15;
           megaclickers = 0;
           megaclickercost = 200;
+          gigaclickers = 0;
+          gigaclickercost = 10000;
           rebirthsavailable = 0;
           document.getElementById("clicks").innerHTML = clicks;
           document.getElementById("autoclickers").innerHTML = autoclickers;
           document.getElementById("autoclickercost").innerHTML = autoclickercost;
           document.getElementById("megaclickers").innerHTML = megaclickers;
           document.getElementById("megaclickercost").innerHTML = megaclickercost;
+          document.getElementById("gigaclickers").innerHTML = gigaclickers;
+          document.getElementById("gigaclickercost").innerHTML = gigaclickercost;
           document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
           document.getElementById("rebirths").innerHTML = rebirths;
         }
-        if (rebirths >= 1000) {
+        if (rebirths >= 3) {
           document.getElementById("unlock1_1").style.display = "block";
           document.getElementById("unlock1_2").style.display = "inline";
           document.getElementById("unlock1_3").style.display = "inline";
           document.getElementById("unlock1_4").style.display = "inline";
+        }
+        if (rebirths >= 5) {
+          document.getElementById("unlock2_1").style.display = "inline";
         }
       }
 
@@ -114,11 +140,13 @@
           document.getElementById("autobuyselectedtext").innerHTML = "Autoclicker";
         } else if (selected === 2) {
           document.getElementById("autobuyselectedtext").innerHTML = "Megaclicker";
+        } else if (selected === 3) {
+          document.getElementById("autobuyselectedtext").innerHTML = "Gigaclicker";
         }
       }
 
       setInterval(function() {
-        clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers));
+        clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers) + (50*gigaclickers));
         document.getElementById("clicks").innerHTML = clicks;
         rebirthsavailable = Math.round(15*Math.sqrt(clicks/100000));
         document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
@@ -126,6 +154,8 @@
           buyAutoClicker()
         } else if (autobuyselected === 2) {
           buyMegaClicker()
+        } else if (autobuyselected === 3) {
+          buyGigaClicker()
         }
       }, 1000);
     </script>
