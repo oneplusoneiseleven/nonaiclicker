@@ -121,13 +121,13 @@
           document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
           document.getElementById("rebirths").innerHTML = rebirths;
         }
-        if (rebirths >= 3) {
+        if (rebirths >= 1000) {
           document.getElementById("unlock1_1").style.display = "block";
           document.getElementById("unlock1_2").style.display = "inline";
           document.getElementById("unlock1_3").style.display = "inline";
           document.getElementById("unlock1_4").style.display = "inline";
         }
-        if (rebirths >= 5) {
+        if (rebirths >= 10000) {
           document.getElementById("unlock2_1").style.display = "inline";
           document.getElementById("unlock1_5").style.display = "inline";
         }
@@ -149,8 +149,6 @@
       setInterval(function() {
         clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers) + (50*gigaclickers));
         document.getElementById("clicks").innerHTML = clicks;
-        rebirthsavailable = Math.round(15*Math.sqrt(clicks/100000));
-        document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
         if (autobuyselected === 1) {
           buyAutoClicker()
         } else if (autobuyselected === 2) {
@@ -158,6 +156,8 @@
         } else if (autobuyselected === 3) {
           buyGigaClicker()
         }
+        rebirthsavailable = Math.round(15*Math.sqrt(clicks/100000));
+        document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
       }, 1000);
     </script>
   </body>
