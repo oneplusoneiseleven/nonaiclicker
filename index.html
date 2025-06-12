@@ -32,6 +32,18 @@
     <button onclick="Rebirth()" class="colorbutton">
       Rebirths available [<span id="rebirthsavailable">0</span>]
     </button>
+    <p id="unlock1_1" style="display:none;">
+      Autobuying: <span id="autobuyselectedtext">Off</span>
+    </p>
+    <button onclick="autoBuySetting(0)" class="colorbutton" id="unlock1_2">
+      Off
+    </button>
+    <button onclick="autoBuySetting(1)" class="colorbutton" id="unlock1_3">
+      Autoclickers
+    </button>
+    <button onclick="autoBuySetting(2)" class="colorbutton" id="unlock1_4">
+      Megaclickers
+    </button>
     <script>
       var clicks = 0;
       var autoclickers = 0;
@@ -40,6 +52,7 @@
       var megaclickercost = 200;
       var rebirths = 0;
       var rebirthsavailable = 0;
+      var autobuyselected = 0;
 
       function buyAutoClicker() {
         if (clicks >= autoclickercost) {
@@ -84,6 +97,17 @@
           document.getElementById("megaclickercost").innerHTML = megaclickercost;
           document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
           document.getElementById("rebirths").innerHTML = rebirths;
+        }
+      }
+
+      function autoBuySetting(selected) {
+        autobuyselected = selected;
+        if (selected = 0) {
+          document.getElementById("autobuyselectedtext").innerHTML = "Off";
+        else if (selected = 1) {
+          document.getElementById("autobuyselectedtext").innerHTML = "Autoclicker";
+        else if (selected = 2) {
+          document.getElementById("autobuyselectedtext").innerHTML = "Megaclicker";
         }
       }
 
