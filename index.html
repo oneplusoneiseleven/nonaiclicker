@@ -152,22 +152,23 @@
           document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
           document.getElementById("rebirths").innerHTML = rebirths;
         }
-        if (rebirths >= 1) {
+        if (rebirths >= 1000) {
           document.getElementById("unlock1_1").style.display = "block";
           document.getElementById("unlock1_2").style.display = "inline";
           document.getElementById("unlock1_3").style.display = "inline";
           document.getElementById("unlock1_4").style.display = "inline";
         }
-        if (rebirths >= 2) {
+        if (rebirths >= 5000) {
+          document.getElementById("unlock3_1").style.display = "block";
+          document.getElementById("unlock3_2").style.display = "inline";
+        }
+        if (rebirths >= 10000) {
           document.getElementById("unlock2_1").style.display = "inline";
           document.getElementById("unlock1_5").style.display = "inline";
         }
-        if (rebirths >= 3) {
+        if (rebirths >= 100000) {
           document.getElementById("unlock2_2").style.display = "inline";
           document.getElementById("unlock1_6").style.display = "inline";
-        } if (rebirths >= 4) {
-          document.getElementById("unlock3_1").style.display = "block";
-          document.getElementById("unlock3_2").style.display = "inline";
         }
       }
 
@@ -176,6 +177,10 @@
         document.getElementById("unlock1_2").style.display = "inline";
         document.getElementById("unlock1_3").style.display = "inline";
         document.getElementById("unlock1_4").style.display = "inline";
+      }
+      if (rebirths >= 5000) {
+        document.getElementById("unlock3_1").style.display = "block";
+        document.getElementById("unlock3_2").style.display = "inline";
       }
       if (rebirths >= 10000) {
         document.getElementById("unlock2_1").style.display = "inline";
