@@ -26,12 +26,20 @@
     <button onclick="buyMegaClicker()" class="colorbutton">
       Megaclicker [<span id="megaclickercost">200</span>] -- <span id="megaclickers">0</span>
     </button>
+    <p>
+      Rebirths: [<span id="rebirths">0</span>]
+    </p>
+    <button onclick="Rebirth()" class="colorbutton">
+      Rebirths available [<span id="rebirthsavailable">0</span>]
+    </button>
     <script>
       var clicks = 0;
       var autoclickers = 0;
       var autoclickercost = 15;
       var megaclickers = 0;
       var megaclickercost = 200;
+      var rebirths = 0;
+      var rebirthsavailable = 0;
 
       function buyAutoClicker() {
         if (clicks >= autoclickercost) {
@@ -60,9 +68,30 @@
         document.getElementById("clicks").innerHTML = clicks;
       }
 
+      function Rebirth() {
+        if rebirthsavailable >= 1 {
+          rebirths = rebirths + rebirthsavailable;
+          clicks = 0;
+          autoclickers = 0;
+          autoclickercost = 15;
+          megaclickers = 0;
+          megaclickercost = 200;
+          rebirthsavailable = 0;
+          document.getElementById("clicks").innerHTML = clicks;
+          document.getElementById("autoclickers").innerHTML = autoclickers;
+          document.getElementById("autoclickercost").innerHTML = autoclickercost;
+          document.getElementById("megaclickers").innerHTML = megaclickers;
+          document.getElementById("megaclickercost").innerHTML = megaclickercost;
+          document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
+          document.getElementById("rebirths").innerHTML = rebirths;
+        }
+      }
+
       setInterval(function() {
-        clicks = clicks + autoclickers + (5*megaclickers);
+        clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers));
         document.getElementById("clicks").innerHTML = clicks;
+        rebirthsavailable = Math.round(5*Math.sqrt(clicks/1000));
+        document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
       }, 1000);
     </script>
   </body>
