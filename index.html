@@ -90,7 +90,7 @@
       setInterval(function() {
         clicks = clicks + (rebirths+1)*(autoclickers + (5*megaclickers));
         document.getElementById("clicks").innerHTML = clicks;
-        rebirthsavailable = Math.round(4*Math.sqrt(clicks/10000));
+        rebirthsavailable = Math.round(15*Math.sqrt(clicks/100000));
         document.getElementById("rebirthsavailable").innerHTML = rebirthsavailable;
       }, 1000);
     </script>
